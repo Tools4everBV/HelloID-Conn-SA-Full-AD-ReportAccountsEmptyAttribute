@@ -1,0 +1,10 @@
+[
+    {
+        "description":  "Attribuut",
+        "translateDescription":  false,
+        "inputFieldType":  1,
+        "key":  "attributevar",
+        "type":  0,
+        "options":  1
+    }
+]
