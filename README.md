@@ -10,6 +10,13 @@ This HelloID Service Automation Delegated Form provides an Active Directory repo
  1. Overview of AD user accounts that match this report
  2. Download data using CSV export in SA
  
+
+## Versioning
+| Version | Description | Date |
+| - | - | - |
+| 1.0.1   | Added version number and updated all-in-one script | 2021/11/03  |
+| 1.0.0   | Initial release | 2021/05/05  |
+
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 * [Description](#description)
@@ -17,6 +24,7 @@ This HelloID Service Automation Delegated Form provides an Active Directory repo
   * [Getting started](#getting-started)
 * [Post-setup configuration](#post-setup-configuration)
 * [Manual resources](#manual-resources)
+* [Getting help](#getting-help)
 
 
 ## All-in-one PowerShell setup script
@@ -42,5 +50,8 @@ This Delegated Form uses the following resources in order to run
 ### Powershell data source 'Empty-attributes-overview'
 This Powershell data source runs an Active Directory query to select the AD user accounts that match this report. It uses an array of Active Directory OU's specified as HelloID user defined variable named _"ADusersReportOU"_ to specify the report scoping.
 
-# HelloID Docs
+## Getting help
+_If you need help, feel free to ask questions on our [forum](https://forum.helloid.com/forum/helloid-connectors/service-automation/495-helloid-sa-active-directory-report-ad-accounts-with-empty-attribute)_
+
+## HelloID Docs
 The official HelloID documentation can be found at: https://docs.helloid.com/
