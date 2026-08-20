@@ -8,12 +8,12 @@
 
 _HelloID-Conn-SA-Full-AD-ReportAccountsEmptyAttribute_ is a delegated form designed for use with HelloID Service Automation (SA). It can be imported into HelloID and customized according to your requirements.
 
-By using this delegated form, you can generate Active Directory reports showing user accounts with empty values in a specified attribute. The following options are available:
+By using this delegated form, you can generate a report of Active Directory user accounts with empty values in a specified attribute. The following options are available:
 
 1. Select which Active Directory attribute to check for empty values.
 2. View a list of all AD user accounts that have no value in the specified attribute.
 3. View basic AD user account attributes (ObjectGuid, CanonicalName, DisplayName, UserPrincipalName, SamAccountName, Department, Title, Enabled status, EmployeeId, and the selected attribute).
-4. Export report data using CSV export functionality in Service Automation.
+4. Optionally download the results directly from the HelloID interface using the built-in download functionality.
 
 ## Getting started
 
