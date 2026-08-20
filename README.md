@@ -6,7 +6,7 @@
 
 ## Description
 
-_HelloID-Conn-SA-Full-AD-ReportAccountsEmptyAttribute_ is a delegated form designed for use with HelloID Service Automation (SA). It can be imported into HelloID and customized according to your requirements.
+HelloID-Conn-SA-Full-AD-ReportAccountsEmptyAttribute is a delegated form designed for use with HelloID Service Automation (SA). It can be imported into HelloID and customized according to your requirements.
 
 By using this delegated form, you can generate a report of Active Directory user accounts with empty values in a specified attribute. The following options are available:
 
@@ -15,47 +15,36 @@ By using this delegated form, you can generate a report of Active Directory user
 3. View basic AD user account attributes (ObjectGuid, CanonicalName, DisplayName, UserPrincipalName, SamAccountName, Department, Title, Enabled status, EmployeeId, and the selected attribute).
 4. Optionally download the results directly from the HelloID interface using the built-in download functionality.
 
+This form enables users to identify user accounts with empty attribute values in Active Directory without requiring direct access to AD, thereby improving security by controlling access to the directory.
+
 ## Getting started
 
 ### Requirements
 
-• **Active Directory Access**:  
-  The connector requires read access to an Active Directory domain. A service account with appropriate AD read permissions is necessary.
-
-• **HelloID Agent**:  
-  A HelloID Agent must be installed and configured to communicate with the Active Directory domain.
-
-• **PowerShell module 'ActiveDirectory'**:  
-  The HelloID Agent must have PowerShell available with Active Directory module support.
+- **Active Directory Access**: The connector requires read access to an Active Directory domain. A service account with appropriate AD read permissions is necessary.
+- **HelloID Agent**: A HelloID Agent must be installed and configured to communicate with the Active Directory domain.
+- **PowerShell module 'ActiveDirectory'**: The HelloID Agent must have PowerShell available with Active Directory module support.
 
 ### Connection settings
 
 The following user-defined variables are used by the connector.
 
-| Setting | Description | Mandatory |
-|---------|-------------|-----------|
-| ADusersReportSearchOU | Semicolon-separated list of Active Directory OUs for scoping AD user accounts in the report (e.g., `OU=Users,DC=domain,DC=local;OU=Employees,DC=domain,DC=local`) | Yes |
+| Variable name | Example value | Description | Required |
+| ------------- | ------------- | ----------- | -------- |
+| ADusersReportSearchOU | `OU=Users,DC=contoso,DC=local;OU=Employees,DC=contoso,DC=local` | Semicolon-separated list of Active Directory OUs for scoping AD user accounts in the report | Yes |
 
 ## Remarks
 
 ### Attribute Selection
 
-• **Dynamic Attribute**:  
-  Users can specify which attribute to check for empty values. The selected attribute is dynamically added to the report output.
-
-• **Search Scope**:  
-  The search is limited to the OUs defined in the `ADusersReportSearchOU` variable.
+- **Dynamic Attribute**: Users can specify which attribute to check for empty values. The selected attribute is dynamically added to the report output.
+- **Search Scope**: The search is limited to the OUs defined in the `ADusersReportSearchOU` variable.
 
 ### Report Output
 
-• **Fixed Properties**:  
-  The report always includes ObjectGuid, CanonicalName, DisplayName, UserPrincipalName, SamAccountName, Department, Title, Enabled, and EmployeeId.
-
-• **Dynamic Property**:  
-  The user-selected attribute is automatically added to the output properties.
-
-• **Sorting**:  
-  Results are sorted by DisplayName for easier review.
+- **Fixed Properties**: The report always includes ObjectGuid, CanonicalName, DisplayName, UserPrincipalName, SamAccountName, Department, Title, Enabled, and EmployeeId.
+- **Dynamic Property**: The user-selected attribute is automatically added to the output properties.
+- **Sorting**: Results are sorted by DisplayName for easier review.
 
 ## Development resources
 
@@ -83,9 +72,9 @@ The following PowerShell cmdlets are used by the connector:
 
 ## Getting help
 
-| :bulb: Tip |
+| :memo: Note |
 |:---|
-| For more information on Delegated Forms, please refer to our [documentation](https://docs.helloid.com/en/service-automation/delegated-forms.html) pages. |
+| For more information on Delegated Forms, please refer to our [documentation pages](https://docs.helloid.com/en/service-automation/delegated-forms.html). |
 
 ## HelloID docs
 
