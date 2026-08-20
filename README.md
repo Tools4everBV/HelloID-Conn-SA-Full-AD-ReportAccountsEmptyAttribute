@@ -19,14 +19,9 @@ By using this delegated form, you can generate a report of Active Directory user
 
 ### Requirements
 
-• **Active Directory Access**:  
-  The connector requires read access to an Active Directory domain. A service account with appropriate AD read permissions is necessary.
-
-• **HelloID Agent**:  
-  A HelloID Agent must be installed and configured to communicate with the Active Directory domain.
-
-• **PowerShell module 'ActiveDirectory'**:  
-  The HelloID Agent must have PowerShell available with Active Directory module support.
+- **Active Directory Access**: The connector requires access to an Active Directory domain with sufficient permissions to query group information. A service account with appropriate AD read permissions is necessary.
+- **HelloID Agent**: A HelloID Agent must be installed and configured to communicate with the Active Directory domain.
+- **PowerShell module 'ActiveDirectory'**: The HelloID Agent must have PowerShell available with Active Directory module support.
 
 ### Connection settings
 
