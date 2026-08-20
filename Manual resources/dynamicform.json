@@ -1,101 +1,105 @@
 [
     {
-        "label":  "First step",
-        "fields":  [
-                       {
-                           "templateOptions":  {
-
-                                               },
-                           "type":  "text",
-                           "summaryVisibility":  "Show",
-                           "body":  "Enter the AD attribute used by the filter",
-                           "requiresTemplateOptions":  false,
-                           "requiresKey":  false
-                       },
-                       {
-                           "key":  "attributevar",
-                           "templateOptions":  {
-                                                   "label":  "Attribute"
-                                               },
-                           "type":  "input",
-                           "summaryVisibility":  "Show",
-                           "requiresTemplateOptions":  true,
-                           "requiresKey":  true
-                       }
-                   ]
+        "templateOptions":  {
+                                "title":  "This report displays local AD accounts that have no value in the attribute you provide.",
+                                "titleField":  "",
+                                "bannerType":  "Info",
+                                "useBody":  true
+                            },
+        "type":  "textbanner",
+        "summaryVisibility":  "Show",
+        "body":  "Please wait while the data is loading.\n\nAfter loading, you can use the download button to download the report to CSV.",
+        "requiresTemplateOptions":  false,
+        "requiresKey":  false,
+        "requiresDataSource":  false
     },
     {
-        "label":  "Second step",
-        "fields":  [
-                       {
-                           "templateOptions":  {
-
-                                               },
-                           "type":  "markdown",
-                           "summaryVisibility":  "Show",
-                           "body":  "The following report will show local AD accounts that have no value in the attribute given in step 1. Please wait while the data is loading...",
-                           "requiresTemplateOptions":  false,
-                           "requiresKey":  false
-                       },
-                       {
-                           "key":  "grid",
-                           "templateOptions":  {
-                                                   "label":  "Results",
-                                                   "grid":  {
-                                                                "columns":  [
-                                                                                {
-                                                                                    "headerName":  "Sam Account Name",
-                                                                                    "field":  "SamAccountName"
-                                                                                },
-                                                                                {
-                                                                                    "headerName":  "Title",
-                                                                                    "field":  "Title"
-                                                                                },
-                                                                                {
-                                                                                    "headerName":  "Department",
-                                                                                    "field":  "Department"
-                                                                                },
-                                                                                {
-                                                                                    "headerName":  "Canonical Name",
-                                                                                    "field":  "CanonicalName"
-                                                                                },
-                                                                                {
-                                                                                    "headerName":  "Enabled",
-                                                                                    "field":  "Enabled"
-                                                                                },
-                                                                                {
-                                                                                    "headerName":  "User Principal Name",
-                                                                                    "field":  "UserPrincipalName"
-                                                                                },
-                                                                                {
-                                                                                    "headerName":  "Displayname",
-                                                                                    "field":  "Displayname"
-                                                                                }
-                                                                            ],
-                                                                "height":  500,
-                                                                "rowSelection":  "single"
-                                                            },
-                                                   "dataSourceConfig":  {
-                                                                            "dataSourceGuid":  "$dataSourceGuid_0",
-                                                                            "input":  {
-                                                                                          "propertyInputs":  [
-                                                                                                                 {
-                                                                                                                     "propertyName":  "attributevar",
-                                                                                                                     "otherFieldValue":  {
-                                                                                                                                             "otherFieldKey":  "attributevar"
-                                                                                                                                         }
-                                                                                                                 }
-                                                                                                             ]
-                                                                                      }
-                                                                        },
-                                                   "useFilter":  true,
-                                                   "useDefault":  false
-                                               },
-                           "type":  "grid",
-                           "summaryVisibility":  "Hide element",
-                           "requiresTemplateOptions":  true,
-                           "requiresKey":  true
-                       }
-                   ]
+        "key":  "attributevar",
+        "templateOptions":  {
+                                "label":  "Attribute (must match exact LDAP name)",
+                                "placeholder":  "EmployeeId",
+                                "required":  true
+                            },
+        "type":  "input",
+        "summaryVisibility":  "Show",
+        "requiresTemplateOptions":  true,
+        "requiresKey":  true,
+        "requiresDataSource":  false
+    },
+    {
+        "key":  "usersAttributeEmpty",
+        "templateOptions":  {
+                                "label":  "Users with no value in attribute X",
+                                "grid":  {
+                                             "columns":  [
+                                                             {
+                                                                 "headerName":  "Display Name",
+                                                                 "field":  "DisplayName"
+                                                             },
+                                                             {
+                                                                 "headerName":  "Sam Account Name",
+                                                                 "field":  "SamAccountName"
+                                                             },
+                                                             {
+                                                                 "headerName":  "User Principal Name",
+                                                                 "field":  "UserPrincipalName"
+                                                             },
+                                                             {
+                                                                 "headerName":  "Department",
+                                                                 "field":  "Department"
+                                                             },
+                                                             {
+                                                                 "headerName":  "Title",
+                                                                 "field":  "Title"
+                                                             },
+                                                             {
+                                                                 "headerName":  "Enabled",
+                                                                 "field":  "Enabled"
+                                                             },
+                                                             {
+                                                                 "headerName":  "Employeeid",
+                                                                 "field":  "EmployeeId"
+                                                             }
+                                                         ],
+                                             "height":  500,
+                                             "rowSelection":  "single"
+                                         },
+                                "dataSourceConfig":  {
+                                                         "dataSourceGuid":  "$dataSourceGuid_0",
+                                                         "input":  {
+                                                                       "propertyInputs":  [
+                                                                                              {
+                                                                                                  "propertyName":  "attributeName",
+                                                                                                  "otherFieldValue":  {
+                                                                                                                          "otherFieldKey":  "attributevar"
+                                                                                                                      }
+                                                                                              }
+                                                                                          ]
+                                                                   }
+                                                     },
+                                "useFilter":  true,
+                                "useDefault":  false,
+                                "allowCsvDownload":  true
+                            },
+        "type":  "grid",
+        "summaryVisibility":  "Hide element",
+        "requiresTemplateOptions":  true,
+        "requiresKey":  true,
+        "requiresDataSource":  true
+    },
+    {
+        "key":  "textInput",
+        "templateOptions":  {
+                                "label":  "Reporting only",
+                                "required":  true,
+                                "minLength":  1,
+                                "readonly":  true,
+                                "placeholder":  ""
+                            },
+        "type":  "input",
+        "summaryVisibility":  "Show",
+        "requiresTemplateOptions":  true,
+        "requiresKey":  true,
+        "requiresDataSource":  false
     }
 ]
