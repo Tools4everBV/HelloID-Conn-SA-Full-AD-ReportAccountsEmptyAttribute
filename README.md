@@ -1,57 +1,92 @@
-# Report Accounts Empty Attribute
-This form lists AD accounts which have no values in a given attribute.
+# HelloID-Conn-SA-Full-AD-ReportAccountsEmptyAttribute
 
-## Business Benefits
-This form can list accounts which have an empty given attribute, without direct access to AD. By controlling access to AD, security is improved.
+| :information_source: Information |
+|:---|
+| This repository contains the connector and configuration code only. The implementer is responsible for acquiring the connection details such as username, password, certificate, etc. You might even need to sign a contract or agreement with the supplier before implementing this connector. Please contact the client's application manager to coordinate the connector requirements. |
 
-<!-- Description -->
 ## Description
-This HelloID Service Automation Delegated Form provides an Active Directory report containing the user accounts that have an empty given attribute. The following options are available:
- 1. Overview of AD user accounts that match this report
- 2. Download data using CSV export in SA
- 
 
-## Versioning
-| Version | Description | Date |
-| - | - | - |
-| 1.0.1   | Added version number and updated all-in-one script | 2021/11/03  |
-| 1.0.0   | Initial release | 2021/05/05  |
+_HelloID-Conn-SA-Full-AD-ReportAccountsEmptyAttribute_ is a delegated form designed for use with HelloID Service Automation (SA). It can be imported into HelloID and customized according to your requirements.
 
-<!-- TABLE OF CONTENTS -->
-## Table of Contents
-* [Description](#description)
-* [All-in-one PowerShell setup script](#all-in-one-powershell-setup-script)
-  * [Getting started](#getting-started)
-* [Post-setup configuration](#post-setup-configuration)
-* [Manual resources](#manual-resources)
-* [Getting help](#getting-help)
+By using this delegated form, you can generate Active Directory reports showing user accounts with empty values in a specified attribute. The following options are available:
 
+1. Select which Active Directory attribute to check for empty values.
+2. View a list of all AD user accounts that have no value in the specified attribute.
+3. View basic AD user account attributes (ObjectGuid, CanonicalName, DisplayName, UserPrincipalName, SamAccountName, Department, Title, Enabled status, EmployeeId, and the selected attribute).
+4. Export report data using CSV export functionality in Service Automation.
 
-## All-in-one PowerShell setup script
-The PowerShell script "createform.ps1" contains a complete PowerShell script using the HelloID API to create the complete Form including user defined variables, tasks and data sources.
+## Getting started
 
-_Please note that this script asumes none of the required resources do exists within HelloID. The script does not contain versioning or source control_
- 
-### Getting started
-Please follow the documentation steps on [HelloID Docs](https://docs.helloid.com/hc/en-us/articles/360017556559-Service-automation-GitHub-resources) in order to setup and run the All-in one Powershell Script in your own environment.
- 
-## Post-setup configuration
-After the all-in-one PowerShell script has run and created all the required resources. The following items need to be configured according to your own environment
- 1. Update the following [user defined variables](https://docs.helloid.com/hc/en-us/articles/360014169933-How-to-Create-and-Manage-User-Defined-Variables)
-<table>
-  <tr><td><strong>Variable name</strong></td><td><strong>Example value</strong></td><td><strong>Description</strong></td></tr>
-  <tr><td>HIDreportFolder</td><td>C:\HIDreports\</td><td>Local folder on HelloID Agent server for exporting CSV reports</td></tr>
-  <tr><td>ADusersReportOU</td><td>[{ "OU": "OU=Employees,OU=Users,OU=Enyoi,DC=enyoi-media,DC=local"},{ "OU": "OU=Disabled,OU=Users,OU=Enyoi,DC=enyoi-media,DC=local"},{"OU": "OU=External,OU=Users,OU=Enyoi,DC=enyoi-media,DC=local"}]</td><td>Array of Active Directory OUs for scoping shown AD user accounts in this report</td></tr>
-</table>
+### Requirements
 
-## Manual resources
-This Delegated Form uses the following resources in order to run
+• **Active Directory Access**:  
+  The connector requires read access to an Active Directory domain. A service account with appropriate AD read permissions is necessary.
 
-### Powershell data source 'Empty-attributes-overview'
-This Powershell data source runs an Active Directory query to select the AD user accounts that match this report. It uses an array of Active Directory OU's specified as HelloID user defined variable named _"ADusersReportOU"_ to specify the report scoping.
+• **HelloID Agent**:  
+  A HelloID Agent must be installed and configured to communicate with the Active Directory domain.
+
+• **PowerShell module 'ActiveDirectory'**:  
+  The HelloID Agent must have PowerShell available with Active Directory module support.
+
+### Connection settings
+
+The following user-defined variables are used by the connector.
+
+| Setting | Description | Mandatory |
+|---------|-------------|-----------|
+| ADusersReportSearchOU | Semicolon-separated list of Active Directory OUs for scoping AD user accounts in the report (e.g., `OU=Users,DC=domain,DC=local;OU=Employees,DC=domain,DC=local`) | Yes |
+
+## Remarks
+
+### Attribute Selection
+
+• **Dynamic Attribute**:  
+  Users can specify which attribute to check for empty values. The selected attribute is dynamically added to the report output.
+
+• **Search Scope**:  
+  The search is limited to the OUs defined in the `ADusersReportSearchOU` variable.
+
+### Report Output
+
+• **Fixed Properties**:  
+  The report always includes ObjectGuid, CanonicalName, DisplayName, UserPrincipalName, SamAccountName, Department, Title, Enabled, and EmployeeId.
+
+• **Dynamic Property**:  
+  The user-selected attribute is automatically added to the output properties.
+
+• **Sorting**:  
+  Results are sorted by DisplayName for easier review.
+
+## Development resources
+
+### PowerShell Module
+
+This connector uses the ActiveDirectory PowerShell module for querying Active Directory user accounts.
+
+- [ActiveDirectory Module Documentation](https://learn.microsoft.com/en-us/powershell/module/activedirectory/)
+
+### Cmdlets
+
+The following PowerShell cmdlets are used by the connector:
+
+| Cmdlet | Description |
+| --- | --- |
+| Get-ADForest | Retrieves Active Directory forest information |
+| Get-ADDomain | Retrieves Active Directory domain information |
+| Get-ADUser | Retrieves Active Directory user accounts |
+
+### Cmdlet documentation
+
+- [Get-ADForest](https://learn.microsoft.com/en-us/powershell/module/activedirectory/get-adforest)
+- [Get-ADDomain](https://learn.microsoft.com/en-us/powershell/module/activedirectory/get-addomain)
+- [Get-ADUser](https://learn.microsoft.com/en-us/powershell/module/activedirectory/get-aduser)
 
 ## Getting help
-_If you need help, feel free to ask questions on our [forum](https://forum.helloid.com/forum/helloid-connectors/service-automation/495-helloid-sa-active-directory-report-ad-accounts-with-empty-attribute)_
 
-## HelloID Docs
-The official HelloID documentation can be found at: https://docs.helloid.com/
+| :bulb: Tip |
+|:---|
+| For more information on Delegated Forms, please refer to our [documentation](https://docs.helloid.com/en/service-automation/delegated-forms.html) pages. |
+
+## HelloID docs
+
+The official HelloID documentation can be found at: [https://docs.helloid.com/](https://docs.helloid.com/)
